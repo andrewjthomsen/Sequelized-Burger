@@ -1,0 +1,40 @@
+<div class="wrapper">
+  <h1><span id="bernie">Texas Outlaw Burgers </span></h1>
+    <!--create a for loop to loop through burgers eaten/not eaten-->
+<h2>Burger Menu</h2>
+<h5>Home of the Big Tex</h5>
+<ul id="burgers">
+  {{#each burger}}
+    {{#unless devoured}}
+      <li>{{burger_name}}</li>
+      <button data-id="{{id}}">Devour</button>
+    {{/unless}}
+  {{/each}}
+</ul>
+
+<h2>Out of Stock</h2>
+
+<ul id="eaten-burgers">
+  {{#each burger}}
+    {{#if devoured}}
+     <li>{{burger_name}}</li>  
+    {{/if}}
+  {{/each}}
+</ul>
+
+<div class="burgersEaten"></div>
+<div class="burgersNotEaten"></div>
+{{!-- <h2>Add a burger</h2> --}}
+
+  <form class="create-form">
+
+  <div class="form-group" id="burger-name">
+    <label for="burgerOrder">Create Burger:</label>
+    <input type="text" id="burgerOrder" name="name">
+  </div>
+<div>
+  
+</div>
+  <button type="submit" id="add-burger-btn">Add Burger</button>
+</form>
+</div>
