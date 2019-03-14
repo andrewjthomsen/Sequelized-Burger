@@ -7,9 +7,7 @@ router.get("/", function (req, res) {
 });
 //
 router.get("/burgers", function (req, res) {
-  db.Burger.findAll({
-    include:[db.Customer]
-  })
+  db.Burger.findAll()
     .then(function (dbBurger) {
       console.log(dbBurger);
       var hbsObject = {
