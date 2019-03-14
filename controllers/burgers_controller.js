@@ -7,7 +7,9 @@ router.get("/", function (req, res) {
 });
 //
 router.get("/burgers", function (req, res) {
-  db.Burger.findAll()
+  db.Burger.findAll({
+    include:[db.Customer]
+  })
     .then(function (dbBurger) {
       console.log(dbBurger);
       var hbsObject = {
@@ -23,11 +25,11 @@ router.post("/burgers/create", function (req, res) {
   db.Burger.create({
     burger_name: req.body.burger_name
   }).then(function (dbBurger) {
-
+    res.redirect("/");
   });
 });
 //Capital C refers to customer table, whereas lowercase refers to the user (referencing customer)
-router.put("/burgers/:id", function (req, res) {
+router.put("/burgers/update", function (req, res) {
   if (req.body.customer) {
     db.Customer.create({
       customer: req.body.customer,
@@ -37,7 +39,7 @@ router.put("/burgers/:id", function (req, res) {
         devoured: true
       }, {
         where: {
-          id: req.params.id
+          id: req.body.burger_id
         }
       }).then(function (dbBurger) {
         res.json("/")
@@ -48,7 +50,7 @@ router.put("/burgers/:id", function (req, res) {
       devoured: true
     }, {
       where: {
-        id: req.params.id
+        id: req.body.burger_id
       }
     }).then(function (dbBurger) {
       res.json("/")

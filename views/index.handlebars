@@ -6,7 +6,11 @@
     {{#each burger}}
       {{#unless devoured}}
         <li>{{burger_name}}</li>
-        <button data-id="{{id}}">Devour</button>
+        <!--Holds data for customer name-->
+        <input type="hidden" type="text" class="burgerHandler" value="{{this.id}}">
+        <!--Input where customer name is typed in-->
+        <input type="text" placeholder="Customer name" class="customerHandler">
+        <button type="submit" data-id="{{id}}">Devour</button>
       {{/unless}}
     {{/each}}
   </ul>
