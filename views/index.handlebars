@@ -4,14 +4,14 @@
   <h5>Home of the Big Tex</h5>
   <ul id="burgers">
     {{#each burger}}
-      {{#unless devoured}}
-        <li>{{burger_name}}</li>
-        <!--Holds data for customer name-->
-        <input type="hidden" type="text" class="burgerHandler" value="{{this.id}}">
-        <!--Input where customer name is typed in-->
-        <input type="text" placeholder="Customer name" class="customerHandler">
-        <button type="submit" data-id="{{id}}">Devour</button>
-      {{/unless}}
+    {{#unless devoured}}
+    <li>{{burger_name}}</li>
+    <!--Holds data for customer name-->
+    <input type="hidden" type="text" class="burgerHandler" value="{{this.id}}">
+    <!--Input where customer name is typed in-->
+    <input type="text" placeholder="Customer name" class="customerHandler">
+    <button type="submit" data-id="{{id}}">Devour</button>
+    {{/unless}}
     {{/each}}
   </ul>
 
@@ -20,9 +20,13 @@
   <!--create a for loop to loop through burgers eaten/not eaten-->
   <ul id="eaten-burgers">
     {{#each burger}}
-      {{#if devoured}}
-      <li>{{burger_name}}</li>  
-      {{/if}}
+    {{#if this.devoured}}
+    {{#if this.Customer.customer}}
+    <li>{{burger_name}}Devoured by:{{this.Customer.customer}}</li>
+    {{#else}}
+    <li>{{burger_name}}</li>
+    {{/if}}
+    {{/if}}
     {{/each}}
   </ul>
 

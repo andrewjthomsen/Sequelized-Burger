@@ -14,13 +14,16 @@ $(document).ready(() => {
             });
     });
     $("#burgers").on("click", "button", function(){
-        var id = $(this).data("id");
+        var burgerInfo = {burger_id: $(this).children(".burgerHandler").val(),
+         customer_name:  $(this).children(".customerHandler").val()}
         $.ajax({
-            url: '/burgers/' + id,
+            url: '/burgers/update',
             method: 'PUT',
+            data: burgerInfo
         })
-        .then(response => {
-            console.log(response);
+        .then(data => {
+            console.log(data);
+            location.reload();
         });
     })
 })
