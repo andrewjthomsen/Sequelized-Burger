@@ -7,7 +7,13 @@ router.get("/", function (req, res) {
 });
 //a burger hasOne Customer that devoured
 router.get("/burgers", function (req, res) {
-  db.Burger.findAll()
+  db.Burger.findAll({
+    include:[
+      {
+        model: db.Customer
+      }
+    ]
+  })
     .then(function (dbBurger) {
       // console.log(dbBurger);
       var hbsObject = {
