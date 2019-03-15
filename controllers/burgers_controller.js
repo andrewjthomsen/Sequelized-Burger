@@ -9,7 +9,7 @@ router.get("/", function (req, res) {
 router.get("/burgers", function (req, res) {
   db.Burger.findAll()
     .then(function (dbBurger) {
-      console.log(dbBurger);
+      // console.log(dbBurger);
       var hbsObject = {
         burger: dbBurger
       };
@@ -19,7 +19,7 @@ router.get("/burgers", function (req, res) {
 });
 //
 router.post("/burgers/create", function (req, res) {
-  console.log(req.body)
+  // console.log(req.body)
   db.Burger.create({
     burger_name: req.body.burger_name
   }).then(function (dbBurger) {
@@ -29,9 +29,10 @@ router.post("/burgers/create", function (req, res) {
 //Capital C refers to customer table, whereas lowercase refers to the user (referencing customer)
 router.put("/burgers/update", function (req, res) {
   if (req.body.customer) {
+    console.log(req.body.customer)
     db.Customer.create({
-      customer: req.body.customer,
-      Burger_id: req.body.burger_id
+      customer_name: req.body.customer,
+      burgerId: req.body.burger_id
     }).then(function (dbCustomer) {
       return db.Burger.update({
         devoured: true

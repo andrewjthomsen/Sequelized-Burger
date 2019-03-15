@@ -10,15 +10,15 @@ $(document).ready(() => {
                 data: newBurger
             })
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 location.reload();
             });
     });
-    $("#burgers").on("click", function (e) {
+    $(".devourWrap").on("submit", function (e) {
         e.preventDefault();
         var burgerInfo = {
-            burger_id: $(this).children(".burgerHandler").val(),
-            customer_name: $(this).children(".customerHandler").val()
+            burger_id: $(".burgerHandler").val(),
+            customer: $(".customerHandler").val()
         }
         console.log(burgerInfo)
         $.ajax({
@@ -27,7 +27,7 @@ $(document).ready(() => {
                 data: burgerInfo
             })
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 location.reload();
             });
     })

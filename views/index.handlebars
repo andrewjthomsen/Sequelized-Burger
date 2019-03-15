@@ -7,11 +7,13 @@
     {{#each burger}}
     {{#unless devoured}}
     <li>{{burger_name}}</li>
+    <form class="devourWrap">
     <!--Holds data for customer name-->
     <input type="hidden" type="text" class="burgerHandler" value="{{this.id}}">
     <!--Input where customer name is typed in-->
-    <input type="text" placeholder="Customer name" class="customerHandler">
+    <input value="{{this.customer_name}}" type="text" placeholder="Customer name" class="customerHandler">
     <button id="burgers" type="submit" data-id="{{id}}">Devour</button>
+    </form>
     {{/unless}}
     {{/each}}
   </ul>
@@ -23,7 +25,7 @@
     <ul id="eaten-burgers">
       {{#each burger}}
       {{#if this.devoured}}
-      <li>{{this.burger_name}}Devoured by:{{this.Customer.name}}</li>
+      <li>{{this.burger_name}}Devoured by:{{this.customer_name}}</li>
       {{/if}}
       {{/each}}
     </ul>
