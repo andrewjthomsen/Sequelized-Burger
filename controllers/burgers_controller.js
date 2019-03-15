@@ -5,15 +5,16 @@ var router = express.Router();
 router.get("/", function (req, res) {
   res.redirect("/burgers");
 });
-//
+//a burger hasOne Customer that devoured
 router.get("/burgers", function (req, res) {
   db.Burger.findAll()
     .then(function (dbBurger) {
       // console.log(dbBurger);
       var hbsObject = {
-        burger: dbBurger
+        burger: dbBurger,
       };
-      return res.render("index",
+      // return 
+      res.render("index",
         hbsObject);
     });
 });
@@ -35,7 +36,7 @@ router.put("/burgers/update", function (req, res) {
       burgerId: req.body.burger_id
     }).then(function (dbCustomer) {
       return db.Burger.update({
-        devoured: true
+        devoured: true, CustomerId: dbCustomer.id
       }, {
         where: {
           id: req.body.burger_id

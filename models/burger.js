@@ -1,3 +1,4 @@
+var Models = require('../models')
 module.exports = function (sequelize, DataTypes) {
     var Burger = sequelize.define("Burger", {
         // Giving the Author model a name of type STRING
@@ -6,13 +7,14 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         }
-    }, {
-        classMethods: {
-            associate: function (models) {
-                Burger.belongsTo(models.Customer);
-            }
-        }
     });
-
+    Burger.associate = function (models) {
+        models.Burger.belongsTo(models.Customer, {
+          onDelete: "CASCADE",
+          foreignKey: {
+            allowNull: true
+          }
+        });
+      };
     return Burger;
 };
